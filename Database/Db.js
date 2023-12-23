@@ -11,7 +11,10 @@ const ConnectToMongo = async () => {
     mongoose.set("strictQuery", false);
 
     // Connect to MongoDB using the provided URI
-    await mongoose.connect(mongoUri).catch((err) => console.error(err.message));
+    await mongoose.connect(mongoUri).catch((err) => {
+      console.error(err.message);
+      return;
+    });
 
     // Log a success message upon successful connection
     console.log("MongoDB connected");
