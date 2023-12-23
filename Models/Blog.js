@@ -1,29 +1,43 @@
-const mongoose = require('mongoose')
+// Import required module
+const mongoose = require("mongoose");
 
-const BlogSchema = mongoose.Schema({
+// Define the Blog schema
+const BlogSchema = mongoose.Schema(
+  {
+    // Title of the blog, required field
     title: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
+    // Description of the blog
     description: {
-        type: String,
+      type: String,
     },
-    tags: [{
-        type: String
-    }],
+    // Tags associated with the blog, stored as an array of strings
+    tags: [
+      {
+        type: String,
+      },
+    ],
+    // Owner's name, required field
     ownerName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
+    // Owner's ID, referencing the 'users' collection
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'
-    }
-}, {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  },
+  {
+    // Define timestamps for created and updated at fields
     timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    }
-})
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
+);
 
-module.exports = Blog = mongoose.model('Blog', BlogSchema);
+// Export the Blog model based on the defined schema
+module.exports = Blog = mongoose.model("Blog", BlogSchema);
